@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <link rel="stylesheet" href="static/css/result.css">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>
+      述語項構造シソーラス拡張補助システム
+    </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <p><h4>結果一覧</h4></p>
+      <br>
+        {% for problem, result in problem2result.items() %}
+          <h6>{{ problem }}問題</h6>
+          <table>
+            <tr>
+              <th>業務名</th>
+              <th>確率</th>
+            </tr>
+          {% for task, prob in result.items() %}
+            <tr>
+              <td>{{ task }}</td>
+              <td>{{ prob*100 }}%</td>
+            </tr>
+          {% endfor %}
+          </table>
+          <br>
+          <br>
+        {% endfor %}
+      <button type="button" class="btn btn-primary btn-sm btn-block" onclick="history.back()">戻る</button>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <link rel="stylesheet" href="static/css/result.css">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>
+      医療優先業務選択システム
+    </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <p><h4>確認事項</h4></p>
+      <br>
+
+      <ul>
+        <li>AHPで選択された業務は「{{ task_cands }}」でした．</li>
+        <li>また，観点は「{{ problems }}」です．</li>
+        <li>作成されたテンプレートファイル mp.xlsx は編集完了し保存されましたか？</li>
+      </ul>
+      <br>
+
+      <form method=post enctype=multipart/form-data class="cp_iptxt">
+        <input type="checkbox" name="confirm" value="ok"> 上記問題なければチェックして送信を押してください．
+        <br>
+        <br>
+        <input type="submit" class="btn btn-primary btn-sm btn-block" value="送信">
+      </form>
+      <br>
+
+      <button type="button" class="btn btn-primary btn-sm btn-block" onclick="history.back()">戻る</button>
+    </div>
+  </body>
+</html>
