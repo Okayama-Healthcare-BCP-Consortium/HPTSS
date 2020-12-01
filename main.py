@@ -1,10 +1,8 @@
 from flask import Flask, request, redirect, url_for, render_template
 import os
-from scipy.stats import entropy
-import matplotlib.pyplot as plt
+import shutil
 import pandas as pd
 import numpy as np
-from jinja2 import Environment, FileSystemLoader
 from modules import ahp
 from modules import mp
 
@@ -29,23 +27,27 @@ def calc_ahp():
 @app.route('/confirm', methods=['GET', 'POST'])
 def input_mp():
 
-    task_cands = request.args.getlist('task_cands')
-    problems = request.args.getlist('problems')
+    if request.method == 'GET':
 
-    # AHPの結果に基づきエクセルテンプレートを作成
-    with pd.ExcelWriter('data/mp.xlsx') as writer:
+        task_cands = request.args.getlist('task_cands')
+        problems = request.args.getlist('problems')
 
-        for problem in problems:
+        # AHPの結果に基づきエクセルテンプレートを作成
+        with pd.ExcelWriter('data/mp.xlsx') as writer:
 
-            data = [[task, 1, 1, 1, 1] for task in task_cands]
-            data.append(['上限', 1, 3, 4, 5])
+            for problem in problems:
 
-            df_temp = pd.DataFrame(
-                data,
-                columns=['業務名', '重要度', 'サンプル１', 'サンプル２', 'サンプル３']
-            )
+                data = [[task, 1, 1, 1, 1] for task in task_cands]
+                data.append(['上限', 1, 3, 4, 5])
 
-            df_temp.to_excel(writer, sheet_name=f'{problem}', index=False)
+                df_temp = pd.DataFrame(
+                    data,
+                    columns=['業務名', '重要度', 'サンプル１', 'サンプル２', 'サンプル３']
+                )
+
+                df_temp.to_excel(writer, sheet_name=f'{problem}', index=False)
+
+        shutil.move('data/mp.xlsx', 'data/tmp.xlsx')
 
     if request.method == 'POST':
 
@@ -59,6 +61,7 @@ def input_mp():
 @app.route('/result')
 def render_result():
 
+    shutil.move('data/tmp.xlsx', 'data/mp.xlsx')
     sheet2df = pd.read_excel('data/mp.xlsx', sheet_name=None)
     problem2result = dict()
     

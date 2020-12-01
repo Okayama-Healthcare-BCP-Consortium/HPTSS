@@ -22,37 +22,28 @@
 
 * Python 3.x
 
-## Installation
-
-### Pythonパッケージ
-
-```bash
-pip install -r requirements.txt
-```
 
 ## Usage
 
+[Docker](https://www.docker.com/) で環境を作成します．事前に[公式ドキュメント](https://docs.docker.com/)を参照しローカル環境にDockerを導入してください．以下はDockerがインストールされており，DockerHubのアカウントを持っていることを想定しています．
+
+### コードのクローン
+
 以下のコマンドをターミナルで実行して下さい．
 ```shell
-git clone 
+git clone git@github.com:Okayama-Healthcare-BCP-Consortium/HPTSS.git
 ```
 
 ### データの準備
 
-述語項構造シソーラスのデータ（dup_checked_pth.xlsx）を用意し，data/raw/においてください．
-
-### モデルの構築
-
-以下のコマンドをターミナルで実行して下さい．
-```shell
-sh const_model.sh
-```
+dataディレクトリにahp.xlsxという名前で基本入力データを準備してください．
 
 ### システムの起動
 
 以下のコマンドをターミナルで実行して下さい．
 ```shell
-python main.py
+docker pull kunifuohbc/hptss
+docker run -p 3000:3000 -v $(pwd):/work --rm kunifuohbc/hptss
 ```
 
 ### システムの利用
