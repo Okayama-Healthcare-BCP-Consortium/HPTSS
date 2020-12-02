@@ -7,7 +7,7 @@ from modules import ahp
 from modules import mp
 
 
-app = Flask(__name__, template_folder='templates/html')
+app = Flask(__name__, template_folder='static/html')
 
 @app.route('/', methods=['GET', 'POST'])
 def calc_ahp():

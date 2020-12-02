@@ -14,7 +14,7 @@
     ├── modules
     │   ├── ahp.py
     │   └── mp.py
-    └── template
+    └── static
         ├── html
         └── css
 
