@@ -1,4 +1,4 @@
-# 医療ビジネスインパクトシステム（医療優先業務選択システム; Healthcare Priority Task Selection System）
+# 医療ビジネスインパクト分析システム（医療優先業務選択システム; Healthcare Priority Task Selection System）
 
 ## Target
 
