@@ -25,6 +25,6 @@ ul li:after {
   left: -2px;
   bottom: 100%;
   padding: 1px 7px;
-  content: "結果一覧";/*タブの文字*/
+  content: "確認事項";/*タブの文字*/
   letter-spacing: 0.05em;/*字間*/
 }
